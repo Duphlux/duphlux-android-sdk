@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Duphlux/Duphlux.iml" filepath="$PROJECT_DIR$/Duphlux/Duphlux.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DuphluxSDK.iml" filepath="$PROJECT_DIR$/DuphluxSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+    </modules>
+  </component>
+</project>

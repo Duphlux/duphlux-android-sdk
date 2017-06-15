@@ -24,7 +24,6 @@ import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText token;
     EditText number;
 
     TextView duphlux_number;
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        token = (EditText) findViewById(R.id.token);
         number = (EditText) findViewById(R.id.number);
 
         duphlux_number = (TextView) findViewById(R.id.duphlux_number);
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         wizard = (Button) findViewById(R.id.wizardButton);
         status = (Button) findViewById(R.id.getStatusButton);
 
-        duphluxSdk = DuphluxSdk.initializeSDK("5ec4cdb4251edc1de32515a39970d5aaab31d7fd");
+        duphluxSdk = DuphluxSdk.initializeSDK(this);
         duphluxAuthRequest = new DuphluxAuthRequest();
         duphluxAuthRequest.setRedirect_url("https://duphlux.com");
 

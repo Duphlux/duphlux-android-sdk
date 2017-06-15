@@ -17,21 +17,16 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/token"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp" />
-
-            <EditText
                 android:id="@+id/number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp" />
+                android:layout_marginBottom="25dp"
+                android:hint="Type a phone number" />
 
             <RelativeLayout
-                android:layout_marginBottom="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
                 android:padding="25dp">
 
                 <Button
@@ -46,33 +41,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="Wizard" />
+                    android:text="Inline" />
 
             </RelativeLayout>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_marginBottom="25dp"
                     android:id="@+id/duphlux_number"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp" />
 
                 <TextView
-                    android:layout_marginBottom="25dp"
                     android:id="@+id/expires"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp" />
 
                 <Button
                     android:id="@+id/getStatusButton"
-                    android:enabled="false"
-                    android:text="Get Status"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="Get Status" />
 
             </LinearLayout>
 

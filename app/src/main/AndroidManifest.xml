@@ -11,9 +11,13 @@
         android:theme="@style/AppTheme">
 
         <!-- Duphlux App Token -->
-        <meta-data android:name="com.panthelope.duphlux.app.token" android:value="5ec4cdb4251edc1de32515a39970d5aaab31d7fd" />
+        <meta-data
+            android:name="com.panthelope.duphlux.app.token"
+            android:value="5ec4cdb4251edc1de32515a39970d5aaab31d7fd" />
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

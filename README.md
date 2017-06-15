@@ -173,7 +173,7 @@ To capture the result from the above code snippet, you’d need to overwrite you
 
 ```
 
-* Note *
+**Note**
 
 You’d need to import the necessary classes shown below if not already done by your IDE.
 

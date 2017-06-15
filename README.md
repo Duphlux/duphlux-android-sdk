@@ -184,11 +184,9 @@ import com.panthelope.duphluxlib.lib.DuphluxConfigs;
 import com.panthelope.duphluxlib.lib.DuphluxSdk;
 
 ```
-## Authors
+## Contact
 
-* **Ikenna Iloeje** - *Initial work* - [Duphlux](https://duphlux.com)
-
-See also the list of [contributors](https://github.com/duphlux/contributors) who participated in this project.
+* Send us an email at **devops@duphlux.com** - [Duphlux](https://duphlux.com) 
 
 ## License
 

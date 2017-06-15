@@ -188,7 +188,7 @@ import com.panthelope.duphluxlib.lib.DuphluxSdk;
 
 * **Ikenna Iloeje** - *Initial work* - [Duphlux](https://duphlux.com)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/duphlux/contributors) who participated in this project.
 
 ## License
 

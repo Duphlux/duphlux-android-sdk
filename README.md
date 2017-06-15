@@ -63,7 +63,7 @@ Note that you will be required to handle the event upon a successful call by the
 
 ```
 DuphluxAuthRequest  duphluxAuthRequest = new DuphluxAuthRequest();
-duphluxAuthRequest.setTimeout("" + timeout);
+duphluxAuthRequest.setTimeout(timeout);
 duphluxAuthRequest.setPhone_number(“YOUR-USERS-MOBILE-NUMBER”);
 duphluxAuthRequest.setTransaction_reference(“UNIQUE-REFERENCE”); // Optional. Duphlux will generate a unique reference for you if not set.
 

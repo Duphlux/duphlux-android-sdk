@@ -8,7 +8,8 @@
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:launchMode="singleTop">
         <activity android:name=".activity.AuthenticateActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 

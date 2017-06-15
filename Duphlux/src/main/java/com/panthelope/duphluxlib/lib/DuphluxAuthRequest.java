@@ -9,7 +9,7 @@ import java.util.UUID;
  * Created by ikenna on 05/06/2017.
  */
 
-public class AuthRequest {
+public class DuphluxAuthRequest {
 
     protected String phone_number;
     protected String timeout;
@@ -18,11 +18,11 @@ public class AuthRequest {
     protected String full_name;
     protected String email_address;
 
-    public AuthRequest() {
+    public DuphluxAuthRequest() {
         setTransaction_reference(generateReference());
     }
 
-    public AuthRequest(String reference) {
+    public DuphluxAuthRequest(String reference) {
         if (!reference.isEmpty()) {
             setTransaction_reference(reference);
         }

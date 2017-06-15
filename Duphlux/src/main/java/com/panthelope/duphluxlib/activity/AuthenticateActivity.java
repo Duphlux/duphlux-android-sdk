@@ -1,9 +1,11 @@
 package com.panthelope.duphluxlib.activity;
 
-import android.app.ProgressDialog;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.CountDownTimer;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,12 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.panthelope.duphluxlib.R;
-import com.panthelope.duphluxlib.lib.AuthRequest;
+import com.panthelope.duphluxlib.lib.DuphluxAuthRequest;
 import com.panthelope.duphluxlib.lib.DuphluxAuthenticationCallback;
-import com.panthelope.duphluxlib.lib.Configs;
+import com.panthelope.duphluxlib.lib.DuphluxConfigs;
 import com.panthelope.duphluxlib.lib.DuphluxSdk;
 
 import org.json.JSONArray;
@@ -28,7 +29,7 @@ public class AuthenticateActivity extends AppCompatActivity {
 
     DuphluxSdk duphluxSdk;
     DuphluxAuthenticationCallback authenticationCallback;
-    AuthRequest authRequest;
+    DuphluxAuthRequest duphluxAuthRequest;
     String phone_number;
 
     TextView duphlux_number;
@@ -46,16 +47,17 @@ public class AuthenticateActivity extends AppCompatActivity {
     ViewGroup loadingDiv;
     long timeout = 900;
 
+    boolean inProgress = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authenticate);
+
         phone_number = getIntent().getStringExtra("phone_number");
 
         duphlux_number = (TextView) findViewById(R.id.duphluxNumber);
-
-
         number = (TextView) findViewById(R.id.phone_number);
         timeLeft = (TextView) findViewById(R.id.secondsLeft);
         confirm = (Button) findViewById(R.id.confirmCall);
@@ -66,60 +68,6 @@ public class AuthenticateActivity extends AppCompatActivity {
         loadingDiv = (ViewGroup) findViewById(R.id.loadingDiv);
 
         number.setText("Call from " + phone_number);
-
-        duphluxSdk = DuphluxSdk.initializeSDK(this);
-        authRequest = new AuthRequest();
-        authRequest.setRedirect_url("https://duphlux.com");
-        authRequest.setPhone_number(phone_number);
-        authRequest.setTimeout("" + timeout);
-        duphluxSdk.authenticate(this, authRequest, new DuphluxAuthenticationCallback() {
-
-            @Override
-            public void onStart() {
-                // Called before request is made
-                // Show busy icon or something...
-                //progressDialog.show();
-                subMain.setVisibility(View.GONE);
-                loadingDiv.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onSuccess(JSONObject jsonObject) {
-                // Handle response from Duphlux server.
-                // Please see documentation for a sample json response
-                loadingDiv.setVisibility(View.GONE);
-                try {
-                    duphlux_number.setText(jsonObject.getString("number"));
-                    final String dNumber = jsonObject.getString("number");
-                    duphlux_number.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(Intent.ACTION_CALL);
-                            intent.setData(Uri.parse("tel:" + dNumber));
-                            startActivity(intent);
-                        }
-                    });
-                    long duration = timeout * 1000; //(jsonObject.getLong("expires_at") - (System.currentTimeMillis() / 1000)) * 1000;
-                    initializeTimer(duration, 1000);
-                    subMain.setVisibility(View.VISIBLE);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailed(JSONArray jsonArray) {
-                // Called when the Duphlux status is false and returns an error
-                String errors = processErrors(jsonArray);
-                __complete(false, errors);
-            }
-
-            @Override
-            public void onError(String message, Throwable e) {
-                // Called when a nasty error is encountered.
-                __complete(false, "An error occurred. Please try again.");
-            }
-        });
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +92,85 @@ public class AuthenticateActivity extends AppCompatActivity {
                 __complete(verificationStatus, msg);
             }
         });
+
+        checkInprogress();
+    }
+
+    public void checkInprogress() {
+        if (!inProgress) {
+            begin();
+        } else {
+            subMain.setVisibility(View.VISIBLE);
+            loadingDiv.setVisibility(View.GONE);
+        }
+    }
+
+    public void begin() {
+        duphluxSdk = DuphluxSdk.initializeSDK(this);
+        duphluxAuthRequest = new DuphluxAuthRequest();
+        duphluxAuthRequest.setRedirect_url("https://duphlux.com");
+        duphluxAuthRequest.setPhone_number(phone_number);
+        duphluxAuthRequest.setTimeout("" + timeout);
+        duphluxSdk.authenticate(this, duphluxAuthRequest, new DuphluxAuthenticationCallback() {
+
+            @Override
+            public void onStart() {
+                // Called before request is made
+                // Show busy icon or something...
+                //progressDialog.show();
+                subMain.setVisibility(View.GONE);
+                loadingDiv.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onSuccess(JSONObject jsonObject) {
+                // Handle response from Duphlux server.
+                // Please see documentation for a sample json response
+                loadingDiv.setVisibility(View.GONE);
+                try {
+                    final String dNumber = jsonObject.getString("number");
+                    duphlux_number.setText(dNumber);
+                    duphlux_number.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_CALL);
+                            intent.setData(Uri.parse("tel:" + dNumber));
+                            if (ActivityCompat.checkSelfPermission(AuthenticateActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                // TODO: Consider calling
+                                //    ActivityCompat#requestPermissions
+                                // here to request the missing permissions, and then overriding
+                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                //                                          int[] grantResults)
+                                // to handle the case where the user grants the permission. See the documentation
+                                // for ActivityCompat#requestPermissions for more details.
+                                return;
+                            }
+                            startActivity(intent);
+                        }
+                    });
+                    long duration = timeout * 1000; //(jsonObject.getLong("expires_at") - (System.currentTimeMillis() / 1000)) * 1000;
+                    initializeTimer(duration, 1000);
+                    subMain.setVisibility(View.VISIBLE);
+                    inProgress = true;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailed(JSONArray jsonArray) {
+                // Called when the Duphlux status is false and returns an error
+                String errors = processErrors(jsonArray);
+                __complete(false, errors);
+            }
+
+            @Override
+            public void onError(String message, Throwable e) {
+                // Called when a nasty error is encountered.
+                __complete(false, "An error occurred. Please try again.");
+            }
+        });
+
     }
 
     public void updateDisplayStatus(boolean status) {
@@ -166,7 +193,7 @@ public class AuthenticateActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.putExtra("status", status);
         intent.putExtra("message", message);
-        setResult(Configs.ACTIVITY_RESULT_CODE, intent);
+        setResult(DuphluxConfigs.ACTIVITY_RESULT_CODE, intent);
         finish();
     }
 
@@ -200,7 +227,7 @@ public class AuthenticateActivity extends AppCompatActivity {
     }
 
     protected void checkCall() {
-        duphluxSdk.getStatus(this, authRequest, new DuphluxAuthenticationCallback() {
+        duphluxSdk.getStatus(this, duphluxAuthRequest, new DuphluxAuthenticationCallback() {
             @Override
             public void onStart() {
 

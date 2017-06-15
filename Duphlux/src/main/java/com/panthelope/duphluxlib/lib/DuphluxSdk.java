@@ -35,33 +35,33 @@ public class DuphluxSdk {
     }
 
     public static DuphluxSdk initializeSDK(Activity activity) {
-        String token = Configs.getMetadata(activity, Configs.meta_app_token_key);
+        String token = DuphluxConfigs.getMetadata(activity, DuphluxConfigs.meta_app_token_key);
         if (instance == null) {
             instance = new DuphluxSdk(token);
         }
         return instance;
     }
 
-    public void authenticate(Activity activity, AuthRequest authRequest, DuphluxAuthenticationCallback authenticationCallback) {
-        if (!authRequest.isValid()) {
+    public void authenticate(Activity activity, DuphluxAuthRequest duphluxAuthRequest, DuphluxAuthenticationCallback authenticationCallback) {
+        if (!duphluxAuthRequest.isValid()) {
             return;
         }
         DuphluxRequest duphluxRequest = new DuphluxRequest(getToken());
-        duphluxRequest.authenticate(activity, authRequest, authenticationCallback);
+        duphluxRequest.authenticate(activity, duphluxAuthRequest, authenticationCallback);
     }
 
-    public void getStatus(Activity activity, AuthRequest authRequest, DuphluxAuthenticationCallback authenticationCallback) {
-        if (authRequest.getTransaction_reference() == null) {
+    public void getStatus(Activity activity, DuphluxAuthRequest duphluxAuthRequest, DuphluxAuthenticationCallback authenticationCallback) {
+        if (duphluxAuthRequest.getTransaction_reference() == null) {
             return;
         }
         DuphluxRequest duphluxRequest = new DuphluxRequest(getToken());
-        duphluxRequest.getStatus(activity, authRequest, authenticationCallback);
+        duphluxRequest.getStatus(activity, duphluxAuthRequest, authenticationCallback);
     }
 
     public static void launch(Activity activity, String phone_number){
         Intent intent = new Intent(activity, AuthenticateActivity.class);
         intent.putExtra("phone_number", phone_number);
-        activity.startActivityForResult(intent, Configs.ACTIVITY_RESULT_CODE);
+        activity.startActivityForResult(intent, DuphluxConfigs.ACTIVITY_RESULT_CODE);
     }
 
 }

@@ -25,11 +25,11 @@ public class DuphluxRequest {
         setToken(token);
     }
 
-    public void authenticate(Context context, AuthRequest authRequest, DuphluxAuthenticationCallback callback) {
+    public void authenticate(Context context, DuphluxAuthRequest duphluxAuthRequest, DuphluxAuthenticationCallback callback) {
 
         this.authenticationCallback = callback;
 
-        DuphluxApiClient.post_raw(context, "authe/verify.json", this.token, authRequest.toJsonString(), new AsyncHttpResponseHandler() {
+        DuphluxApiClient.post_raw(context, "authe/verify.json", this.token, duphluxAuthRequest.toJsonString(), new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 // called before request is started
@@ -61,11 +61,11 @@ public class DuphluxRequest {
         });
     }
 
-    public void getStatus(Context context, AuthRequest authRequest, DuphluxAuthenticationCallback callback) {
+    public void getStatus(Context context, DuphluxAuthRequest duphluxAuthRequest, DuphluxAuthenticationCallback callback) {
 
         this.authenticationCallback = callback;
 
-        DuphluxApiClient.post_raw(context, "authe/status.json", this.token, authRequest.toJsonString(), new AsyncHttpResponseHandler() {
+        DuphluxApiClient.post_raw(context, "authe/status.json", this.token, duphluxAuthRequest.toJsonString(), new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
                 // called before request is started

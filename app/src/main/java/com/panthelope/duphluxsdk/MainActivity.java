@@ -10,10 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.panthelope.duphluxlib.activity.AuthenticateActivity;
-import com.panthelope.duphluxlib.lib.AuthRequest;
+import com.panthelope.duphluxlib.lib.DuphluxAuthRequest;
 import com.panthelope.duphluxlib.lib.DuphluxAuthenticationCallback;
-import com.panthelope.duphluxlib.lib.Configs;
+import com.panthelope.duphluxlib.lib.DuphluxConfigs;
 import com.panthelope.duphluxlib.lib.DuphluxSdk;
 
 import org.json.JSONArray;
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Button status;
 
     DuphluxSdk duphluxSdk;
-    AuthRequest authRequest;
+    DuphluxAuthRequest duphluxAuthRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +53,14 @@ public class MainActivity extends AppCompatActivity {
         status = (Button) findViewById(R.id.getStatusButton);
 
         duphluxSdk = DuphluxSdk.initializeSDK("5ec4cdb4251edc1de32515a39970d5aaab31d7fd");
-        authRequest = new AuthRequest();
-        authRequest.setRedirect_url("http://laundrybag.loc");
+        duphluxAuthRequest = new DuphluxAuthRequest();
+        duphluxAuthRequest.setRedirect_url("https://duphlux.com");
 
         developer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                authRequest.setPhone_number(number.getText().toString());
-                duphluxSdk.authenticate(MainActivity.this, authRequest, new DuphluxAuthenticationCallback() {
+                duphluxAuthRequest.setPhone_number(number.getText().toString());
+                duphluxSdk.authenticate(MainActivity.this, duphluxAuthRequest, new DuphluxAuthenticationCallback() {
                     @Override
                     public void onStart() {
                         // Called before request is made
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                duphluxSdk.getStatus(MainActivity.this, authRequest, new DuphluxAuthenticationCallback() {
+                duphluxSdk.getStatus(MainActivity.this, duphluxAuthRequest, new DuphluxAuthenticationCallback() {
                     @Override
                     public void onStart() {
                         // Called before request is made
@@ -157,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Configs.ACTIVITY_RESULT_CODE) {
+        if (requestCode == DuphluxConfigs.ACTIVITY_RESULT_CODE) {
             // Returns data with a boolean value for status and a corresponding message.
             if(data.getBooleanExtra("status", false)){
 

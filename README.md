@@ -62,17 +62,17 @@ Note that you will be required to handle the event upon a successful call by the
 
 
 ```
-AuthRequest  authRequest = new AuthRequest();
-authRequest.setRedirect_url("http://laundrybag.loc");
-authRequest.setPhone_number(“YOUR-USERS-MOBILE-NUMBER”);
-authRequest.setTransaction_reference(“UNIQUE-REFERENCE”); // Optional. Duphlux will generate a unique reference for you if not set.
+DuphluxAuthRequest  duphluxAuthRequest = new DuphluxAuthRequest();
+duphluxAuthRequest.setTimeout("" + timeout);
+duphluxAuthRequest.setPhone_number(“YOUR-USERS-MOBILE-NUMBER”);
+duphluxAuthRequest.setTransaction_reference(“UNIQUE-REFERENCE”); // Optional. Duphlux will generate a unique reference for you if not set.
 
 ```
 
 Now make an authentication request to the duphlux endpoint
 
 ```
-                duphluxSdk.authenticate(MainActivity.this, authRequest, new DuphluxAuthenticationCallback() {
+                duphluxSdk.authenticate(MainActivity.this, duphluxAuthRequest, new DuphluxAuthenticationCallback() {
    		    @Override
                     public void onStart() {
                         // Called before request is made
@@ -113,7 +113,7 @@ Now make an authentication request to the duphlux endpoint
 Once your user has given our number a missed call, you’d need to query to confirm the status of your previous request.
 
 ```
-		duphluxSdk.getStatus(MainActivity.this, authRequest, new DuphluxAuthenticationCallback() {
+		duphluxSdk.getStatus(MainActivity.this, duphluxAuthRequest, new DuphluxAuthenticationCallback() {
                     @Override
                     public void onStart() {
                         // Called before request is made
@@ -149,7 +149,7 @@ Once your user has given our number a missed call, you’d need to query to conf
 
 ### Duphlux Inline Implementation
 
-The method takes your users through the journey and returns a boolean on completion. Recommended.
+This method takes your users through the journey and returns a boolean on completion. Recommended.
 
 ```
 DuphluxSdk.launch(MainActivity.this, number.getText().toString()); // Launches the duphlux interface.
@@ -162,7 +162,7 @@ To capture the result from the above code snippet, you’d need to overwrite you
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Configs.ACTIVITY_RESULT_CODE) {
+        if (requestCode == DuphluxConfigs.ACTIVITY_RESULT_CODE) {
             // Returns data with a boolean value for status and a corresponding message.
             if(data.getBooleanExtra("status", false)){
 
@@ -178,9 +178,9 @@ To capture the result from the above code snippet, you’d need to overwrite you
 You’d need to import the necessary classes shown below if not already done by your IDE.
 
 ```
-import com.panthelope.duphluxlib.lib.AuthRequest;
+import com.panthelope.duphluxlib.lib.DuphluxAuthRequest;
 import com.panthelope.duphluxlib.lib.DuphluxAuthenticationCallback;
-import com.panthelope.duphluxlib.lib.Configs;
+import com.panthelope.duphluxlib.lib.DuphluxConfigs;
 import com.panthelope.duphluxlib.lib.DuphluxSdk;
 
 ```

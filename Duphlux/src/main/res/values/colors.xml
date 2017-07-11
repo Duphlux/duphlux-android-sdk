@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="duphluxcolorPrimary">#00b19d</color>
+    <color name="duphluxcolorPrimaryDark">#083246</color>
+    <color name="duphluxcolorAccent">#40c5f2</color>
+    <color name="duphluxcolorLightBlue">#1DE2FF</color>
+    <color name="duphluxcolorDarkGrey">#53585f</color>
+    <color name="duphluxcolorLightGrey">#ccced5</color>
+    <color name="duphluxcolorOrange">#f59731</color>
+    <color name="duphluxcolorGreen">#32b55c</color>
+    <color name="duphluxGreen">#83c562</color>
+    <color name="duphluxcolorRed">#f4585f</color>
+    <color name="duphluxbg">#f6f6f6</color>
+    <color name="duphluxlight_grey_bg">#EFF2F4</color>
+    <color name="duphluxcolorPrimaryTransparent">#12506d</color>
+    <color name="duphluxcolorWhite">#ffffff</color>
+</resources>

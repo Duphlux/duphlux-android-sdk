@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == DuphluxConfigs.ACTIVITY_RESULT_CODE) {
             // Returns data with a boolean value for status and a corresponding message.
-            if(data.getBooleanExtra("status", false)){
+            if (data.getBooleanExtra("status", false)) {
 
             }
             Toast.makeText(MainActivity.this, data.getStringExtra("message"), Toast.LENGTH_LONG).show();

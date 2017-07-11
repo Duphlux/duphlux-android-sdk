@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.panthelope.duphluxlib.activity.AuthenticateActivity;
+import com.panthelope.duphluxlib.activity.DuphluxPopupActivity;
 
 /**
  * Created by ikenna on 05/06/2017.
@@ -58,8 +59,14 @@ public class DuphluxSdk {
         duphluxRequest.getStatus(activity, duphluxAuthRequest, authenticationCallback);
     }
 
-    public static void launch(Activity activity, String phone_number){
+    public static void launch_old(Activity activity, String phone_number){
         Intent intent = new Intent(activity, AuthenticateActivity.class);
+        intent.putExtra("phone_number", phone_number);
+        activity.startActivityForResult(intent, DuphluxConfigs.ACTIVITY_RESULT_CODE);
+    }
+
+    public static void launch(Activity activity, String phone_number){
+        Intent intent = new Intent(activity, DuphluxPopupActivity.class);
         intent.putExtra("phone_number", phone_number);
         activity.startActivityForResult(intent, DuphluxConfigs.ACTIVITY_RESULT_CODE);
     }

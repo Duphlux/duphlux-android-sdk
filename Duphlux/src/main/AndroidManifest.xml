@@ -8,10 +8,18 @@
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:launchMode="singleTop"
-        android:screenOrientation="portrait">
-        <activity android:name=".activity.AuthenticateActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        android:screenOrientation="portrait"
+        android:supportsRtl="true">
+        <activity
+            android:label="Authenticate Your Number"
+            android:name=".activity.AuthenticateActivity"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
+        <activity
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"
+            android:label="Authenticate Number"
+            android:name=".activity.DuphluxPopupActivity"
+            android:excludeFromRecents="true"></activity>
     </application>
 
 </manifest>

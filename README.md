@@ -31,7 +31,7 @@ Next, add the lines below to your app build.gradle file
 
 ```
 dependencies {
-    compile 'com.github.Duphlux:duphlux-android-sdk:v1.0.1’
+    compile 'com.github.Duphlux:duphlux-android-sdk:v1.0.2'
 }
 ```
 
@@ -39,7 +39,7 @@ Now, add the following to your manifest file.
 
 ```
 <!-- Duphlux App Token -->
-<meta-data android:name="com.panthelope.duphlux.app.token" android:value=“YOUR-APP-ACCESS-TOKEN” />
+<meta-data android:name="com.panthelope.duphlux.app.token" android:value="YOUR-APP-ACCESS-TOKEN" />
 ```
 
 That’s all!
@@ -64,8 +64,8 @@ Note that you will be required to handle the event upon a successful call by the
 ```
 DuphluxAuthRequest  duphluxAuthRequest = new DuphluxAuthRequest();
 duphluxAuthRequest.setTimeout(timeout);
-duphluxAuthRequest.setPhone_number(“YOUR-USERS-MOBILE-NUMBER”);
-duphluxAuthRequest.setTransaction_reference(“UNIQUE-REFERENCE”); // Optional. Duphlux will generate a unique reference for you if not set.
+duphluxAuthRequest.setPhone_number("YOUR-USERS-MOBILE-NUMBER");
+duphluxAuthRequest.setTransaction_reference("UNIQUE-REFERENCE"); // Optional. Duphlux will generate a unique reference for you if not set.
 
 ```
 
@@ -195,6 +195,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Hat tip to anyone who's code was used
-* Inspiration
-* etc
 

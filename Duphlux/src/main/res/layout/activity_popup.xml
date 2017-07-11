@@ -9,11 +9,11 @@
 
 
     <ScrollView
-        android:scrollbars="none"
         android:id="@+id/mainDiv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,17 +26,47 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/mainDiv">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="18dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Authentication Required"
+                        android:textColor="@color/duphluxcolorPrimary"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
                 <Button
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
                     android:id="@+id/close"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"
+                    android:layout_marginBottom="0dp"
                     android:background="@drawable/circle"
                     android:text="x"
                     android:textAlignment="center"
                     android:textColor="@color/duphluxcolorPrimary" />
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginBottom="-5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/duphluxcolorDarkGrey"></View>
             </RelativeLayout>
 
             <RelativeLayout
@@ -62,9 +92,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:textColor="@color/duphluxcolorDarkGrey"
                             android:text="Give a missed call to the number below."
-                            android:textSize="18sp" />
+                            android:textColor="@color/duphluxcolorDarkGrey"
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
@@ -91,13 +121,13 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:textColor="@color/duphluxcolorPrimary"
                             android:id="@+id/duphluxNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:linksClickable="true"
                             android:text=""
+                            android:textColor="@color/duphluxcolorPrimary"
                             android:textSize="32sp" />
 
                         <TextView
@@ -106,8 +136,8 @@
                             android:layout_marginTop="1dp"
                             android:gravity="center"
                             android:text="Tap to call"
-                            android:textSize="10sp"
-                            android:textColor="@color/duphluxcolorDarkGrey"/>
+                            android:textColor="@color/duphluxcolorDarkGrey"
+                            android:textSize="10sp" />
 
                     </LinearLayout>
 
@@ -135,8 +165,8 @@
                             android:layout_marginTop="3dp"
                             android:gravity="center"
                             android:text="seconds left"
-                            android:textSize="10sp"
-                            android:textColor="@color/duphluxcolorDarkGrey"/>
+                            android:textColor="@color/duphluxcolorDarkGrey"
+                            android:textSize="10sp" />
 
                     </LinearLayout>
 
@@ -203,7 +233,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/duphluxcolorPrimary"
-                            android:text="Call Now"
+                            android:text="Call To Authenticate"
                             android:textAllCaps="true"
                             android:textColor="@color/duphluxcolorWhite" />
 
@@ -218,13 +248,13 @@
                             android:visibility="gone" />
 
                         <TextView
-                            android:textColor="@color/duphluxcolorDarkGrey"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp"
                             android:text="Powered by Duphlux"
-                            android:textSize="8sp" />
+                            android:textColor="@color/duphluxcolorDarkGrey"
+                            android:textSize="9sp" />
 
                     </LinearLayout>
 

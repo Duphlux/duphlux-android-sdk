@@ -31,7 +31,7 @@ Next, add the lines below to your app build.gradle file
 
 ```
 dependencies {
-    compile 'com.github.Duphlux:duphlux-android-sdk:v1.0.3'
+    compile 'com.github.Duphlux:duphlux-android-sdk:v1.0.4'
 }
 ```
 

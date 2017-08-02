@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -60,22 +61,19 @@ public class DuphluxPopupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         setContentView(R.layout.activity_popup);
         this.setFinishOnTouchOutside(false);
 
-
         phone_number = getIntent().getStringExtra("phone_number");
-
         duphlux_number = (TextView) findViewById(R.id.duphluxNumber);
         number = (TextView) findViewById(R.id.phone_number);
         timeLeft = (TextView) findViewById(R.id.secondsLeft);
         dail_now = (Button) findViewById(R.id.confirmCall);
         redirect = (Button) findViewById(R.id.redirectBack);
         close = (Button) findViewById(R.id.close);
-
         subMain = (ViewGroup) findViewById(R.id.subMainDiv);
         loadingDiv = (ViewGroup) findViewById(R.id.loadingDiv);
-
         number.setText("Call from " + phone_number);
 
         dail_now.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +88,9 @@ public class DuphluxPopupActivity extends AppCompatActivity {
         redirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                countDownTimer.cancel();
+                if (countDownTimer != null) {
+                    countDownTimer.cancel();
+                }
                 __complete(verificationStatus, responseMessage);
             }
         });
@@ -98,7 +98,9 @@ public class DuphluxPopupActivity extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                countDownTimer.cancel();
+                if (countDownTimer != null) {
+                    countDownTimer.cancel();
+                }
                 String msg = responseMessage != null ? responseMessage : "Verification cancelled.";
                 __complete(verificationStatus, msg);
             }

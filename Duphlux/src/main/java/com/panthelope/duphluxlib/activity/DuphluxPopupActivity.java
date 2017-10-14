@@ -178,7 +178,9 @@ public class DuphluxPopupActivity extends AppCompatActivity {
         ViewGroup counter = (ViewGroup) findViewById(R.id.counterDiv);
         ViewGroup success = (ViewGroup) findViewById(R.id.successDiv);
         ViewGroup failed = (ViewGroup) findViewById(R.id.expiredDiv);
+        ViewGroup info = (ViewGroup) findViewById(R.id.infoDIv);
 
+        info.setVisibility(View.GONE);
         counter.setVisibility(View.GONE);
         if (status) {
             success.setVisibility(View.VISIBLE);
@@ -273,7 +275,7 @@ public class DuphluxPopupActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + dNumber));
         if (Build.VERSION.SDK_INT > 22) {
-            if (ActivityCompat.checkSelfPermission(DuphluxPopupActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(DuphluxPopupActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(DuphluxPopupActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(DuphluxPopupActivity.this, Manifest.permission.CALL_PHONE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(DuphluxPopupActivity.this);
                     builder.setTitle("Permission Required")

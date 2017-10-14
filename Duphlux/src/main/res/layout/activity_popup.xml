@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     android:background="@android:color/transparent"
+    android:padding="20dp"
     tools:context="com.panthelope.duphluxlib.activity.DuphluxPopupActivity">
 
 
@@ -27,7 +27,6 @@
                 android:layout_above="@+id/mainDiv">
 
                 <Button
-                    android:background="@drawable/ic_close_white_24dp"
                     android:id="@+id/close"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
@@ -35,6 +34,7 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
+                    android:background="@drawable/ic_close_white_24dp"
                     android:text=""
                     android:textAlignment="center"
                     android:textColor="@color/duphluxcolorWhite" />
@@ -98,61 +98,68 @@
                         android:visibility="gone">
 
                         <LinearLayout
+                            android:id="@+id/infoDIv"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="Give a missed call to the number below."
-                                android:textColor="@color/duphluxcolorDarkGrey"
-                                android:textSize="15sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp">
-
-                            <TextView
-                                android:id="@+id/phone_number"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textColor="@color/duphluxcolorPrimary"
-                                android:textSize="10sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
+                            android:layout_height="match_parent"
                             android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/duphluxNumber"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:linksClickable="true"
-                                android:text=""
-                                android:textColor="@color/duphluxcolorPrimary"
-                                android:textSize="32sp" />
+                                android:layout_gravity="center">
 
-                            <TextView
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="Give a missed call to the number below."
+                                    android:textColor="@color/duphluxcolorDarkGrey"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="1dp"
-                                android:gravity="center"
-                                android:text="Tap to call"
-                                android:textColor="@color/duphluxcolorDarkGrey"
-                                android:textSize="10sp" />
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp">
 
+                                <TextView
+                                    android:id="@+id/phone_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@color/duphluxcolorPrimary"
+                                    android:textSize="10sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/duphluxNumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:linksClickable="true"
+                                    android:text=""
+                                    android:textColor="@color/duphluxcolorPrimary"
+                                    android:textSize="32sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="1dp"
+                                    android:gravity="center"
+                                    android:text="Tap to call"
+                                    android:textColor="@color/duphluxcolorDarkGrey"
+                                    android:textSize="10sp" />
+
+                            </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout

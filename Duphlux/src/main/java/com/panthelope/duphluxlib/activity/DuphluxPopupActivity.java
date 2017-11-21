@@ -272,9 +272,8 @@ public class DuphluxPopupActivity extends AppCompatActivity {
     }
 
     public void dial_number(String dNumber) {
-        Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse("tel:" + dNumber));
-        if (Build.VERSION.SDK_INT > 22) {
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + dNumber));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(DuphluxPopupActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(DuphluxPopupActivity.this, Manifest.permission.CALL_PHONE)) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(DuphluxPopupActivity.this);
